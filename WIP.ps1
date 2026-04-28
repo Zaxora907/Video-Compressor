@@ -8,7 +8,7 @@ param (
 
 foreach ($VIDEO in $VIDEOS) {
     [Double]$DURATION = (ffprobe -i $VIDEO.FullName -v error -show_entries "format=duration" -of csv=p=0)
-    [Double]$VIDEO_BITRATE_KBPS = $MAX_SIZE_KB * 8192 / $DURATION - $AUDIO_BITRATE_KBPS
+    [Double]$VIDEO_BITRATE_KBPS = $MAX_SIZE_MB * 8192 / $DURATION - $AUDIO_BITRATE_KBPS
 
     ffmpeg -i $VIDEO.FullName `
         -vf "scale=-2:min(540\,iw)" `
