@@ -13,7 +13,7 @@ foreach ($VIDEO in $VIDEOS) {
 
     for ($I = 0; $I -lt $SPLITS; $I++) {
         ffmpeg -ss ($SEGMENT_DURATION * $I) -t $SEGMENT_DURATION -i $VIDEO.FullName `
-        -vf "scale=-2:min(540\,iw)" `
+        -vf "scale=-2:min(540\,ih)" `
         -c:a libopus -b:a "${AUDIO_BITRATE_KBPS}k" `
         -c:v libx264 -b:v "${VIDEO_BITRATE_KBPS}k" `
         -maxrate "${VIDEO_BITRATE_KBPS}k" `
